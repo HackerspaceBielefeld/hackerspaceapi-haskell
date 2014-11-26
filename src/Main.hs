@@ -8,12 +8,12 @@ import qualified Data.Aeson      as Aeson
 import qualified Network.URI     as URI
 import qualified Data.Text.IO    as Text (putStrLn)
 
-import qualified Hackerspace.JSON.State    as State
-import qualified Hackerspace.JSON.Location as Location
+import qualified Hackerspace.Space.State    as State
+import qualified Hackerspace.Space.Location as Location
 
 import Network.URI (URI)
 import Data.Maybe (fromMaybe)
-import Hackerspace.JSON (Space(..))
+import Hackerspace.Space (Space(..))
 import Data.Bool (bool)
 
 hackerspace :: URI

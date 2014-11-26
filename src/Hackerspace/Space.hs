@@ -1,13 +1,13 @@
 {-# LANGUAGE DeriveGeneric #-}
-module Hackerspace.JSON (Space(..)) where
+module Hackerspace.Space (Space(..)) where
 
 import Data.Aeson (FromJSON)
 import Data.Text (Text)
 import GHC.Generics
 
-import Hackerspace.JSON.State (State)
-import Hackerspace.JSON.Location (Location)
-import Hackerspace.JSON.Contact (Contact)
+import Hackerspace.Space.State (State)
+import Hackerspace.Space.Location (Location)
+import Hackerspace.Space.Contact (Contact)
 
 data Space = Space { state    :: State
                    , location :: Location

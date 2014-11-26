@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveGeneric #-}
-module Hackerspace.JSON.Location (Location(..)) where
+module Hackerspace.Space.Location (Location(..)) where
 
 import Data.Text (Text)
 import Data.Aeson (FromJSON)

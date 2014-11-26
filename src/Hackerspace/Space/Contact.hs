@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveGeneric #-}
-module Hackerspace.JSON.Contact (Contact(..)) where
+module Hackerspace.Space.Contact (Contact(..)) where
 
 import Data.Aeson (FromJSON)
 import Data.Text (Text)
