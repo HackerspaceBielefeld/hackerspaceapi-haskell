@@ -16,6 +16,7 @@ import qualified Network.HTTP    as HTTP
 import qualified Network.URI     as URI
 
 import qualified Data.Aeson      as Aeson
+import qualified Data.Text       as Text (intercalate)
 import qualified Data.Text.IO    as Text (putStrLn)
 
 hackerspace :: URI
@@ -23,13 +24,14 @@ hackerspace =
   let uri = "http://hackerspace-bielefeld.de/status.json" in
       fromMaybe URI.nullURI $ URI.parseURI uri
 
-spaceInfo :: Space -> [Text]
+spaceInfo :: Space -> Text
 spaceInfo s =
-  [ view space s
-  , view (location . address) s
-  , "closed" `bool` "open" $ view (state . open) s
-  , fromMaybe "" $ view (contact . phone) s
-  ]
+  Text.intercalate "\n"
+    [ view space s
+    , view (location . address) s
+    , "closed" `bool` "open" $ view (state . open) s
+    , fromMaybe "" $ view (contact . phone) s
+    ]
 
 main :: IO ()
 main = do
@@ -39,5 +41,5 @@ main = do
 
   either
     (putStrLn . ("<error>: " ++))
-    (mapM_ Text.putStrLn . spaceInfo)
+    (Text.putStrLn . spaceInfo)
     (Aeson.eitherDecode (HTTP.rspBody rsp))
