@@ -15,9 +15,9 @@ import qualified Network.Browser as Browser
 import qualified Network.HTTP    as HTTP
 import qualified Network.URI     as URI
 
-import qualified Data.Aeson      as Aeson
-import qualified Data.Text       as Text (intercalate)
-import qualified Data.Text.IO    as Text (putStrLn)
+import qualified Data.Aeson   as Aeson
+import qualified Data.Text    as Text (intercalate)
+import qualified Data.Text.IO as Text (putStrLn)
 
 hackerspace :: URI
 hackerspace =
