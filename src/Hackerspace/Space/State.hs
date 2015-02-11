@@ -1,10 +1,21 @@
 {-# LANGUAGE DeriveGeneric #-}
-module Hackerspace.Space.State(State(..)) where
+{-# LANGUAGE TemplateHaskell #-}
+module Hackerspace.Space.State
+  ( State
+  , open
+  )
+where
 
-import Data.Aeson (FromJSON)
+import Control.Lens.TH
+
+import Data.Aeson.Extended (FromJSON(parseJSON), lensJSONParser)
+
 import GHC.Generics
 
-data State = State { open :: Bool }
+data State = State { _open :: Bool }
   deriving Generic
 
-instance FromJSON State
+makeLenses ''State
+
+instance FromJSON State where
+  parseJSON = lensJSONParser

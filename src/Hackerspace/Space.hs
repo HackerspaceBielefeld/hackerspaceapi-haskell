@@ -1,20 +1,39 @@
 {-# LANGUAGE DeriveGeneric #-}
-module Hackerspace.Space (Space(..)) where
+{-# LANGUAGE TemplateHaskell #-}
+module Hackerspace.Space
+  ( Space
+  , state
+  , location
+  , contact
+  , space
+  , url
+  , logo
+  , module Hackerspace.Space.State
+  , module Hackerspace.Space.Location
+  , module Hackerspace.Space.Contact
+  )
+where
 
-import Data.Aeson (FromJSON)
+import Control.Lens.TH
+
+import Data.Aeson.Extended (FromJSON(parseJSON), lensJSONParser)
 import Data.Text (Text)
+
 import GHC.Generics
 
-import Hackerspace.Space.State (State)
-import Hackerspace.Space.Location (Location)
-import Hackerspace.Space.Contact (Contact)
+import Hackerspace.Space.State
+import Hackerspace.Space.Location
+import Hackerspace.Space.Contact
 
-data Space = Space { state    :: State
-                   , location :: Location
-                   , contact  :: Contact
-                   , space    :: Text
-                   , url      :: Text
-                   , logo     :: Text
+data Space = Space { _state    :: State
+                   , _location :: Location
+                   , _contact  :: Contact
+                   , _space    :: Text
+                   , _url      :: Text
+                   , _logo     :: Text
                    } deriving Generic
 
-instance FromJSON Space
+makeLenses ''Space
+
+instance FromJSON Space where
+  parseJSON = lensJSONParser
